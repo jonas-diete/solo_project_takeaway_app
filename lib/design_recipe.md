@@ -88,6 +88,7 @@ class TakeawayApp
   # calls display_selection_screen and ask_for_selection in a while loop
   # calls the appropriate methods depending on user input
   end
+end
 
 class Meal
   def initialize(name, price) # name is a string, price is a float (with 2 decimal places)
@@ -109,8 +110,8 @@ class Menu
     # adds meal to list
   end
 
-  def view
-    # displays the menu with names and prices of the meals
+  def get_menu
+    # returns menu array
   end
 end
 
@@ -145,6 +146,7 @@ class Order
     # calls get_phone_number
     # creates a new object of class text message and sends that message to user
   end
+end
 
   class TextMessage
     def initialize(message, number) # both are strings
@@ -163,7 +165,7 @@ combinations that reflect the ways in which the system will be used._
 ```ruby
 
 # Test 1: view the menu
-app = TakeawayApp.new
+
 menu = Menu.new
 pizza = Meal.new("Pizza Margherita", 8.50)
 menu.add(pizza)
@@ -175,8 +177,13 @@ falafel = Meal.new("Falafel Wrap", 6.00)
 menu.add(falafel)
 samosa = Meal.new("Vegetable Samosa", 2.50)
 menu.add(samosa)
+
+order = Order.new
+
+app = TakeawayApp.new(menu, order)
 app.run
 # user selects 1
+# => puts "Our Menu:"
 # => puts "Pizza Margherita - £8.50"
 # => puts "Veggie Burger - £7.90"
 # => puts "Chips - £3.20"

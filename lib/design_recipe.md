@@ -148,15 +148,15 @@ class Order
   end
 end
 
-  class TextMessage
-    def initialize(message, number) # both are strings
-    end
+class TextMessage
+  def initialize(message, number) # both are strings
+  end
 
-    def send
-      # sends the message to the given number
-    end
+  def send
+    # sends the message to the given number
   end
 end
+
 ```
 
 ## 3. Examples as Integration Tests

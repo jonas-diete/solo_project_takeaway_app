@@ -1,3 +1,6 @@
+require "./text_message.rb"
+require "date"
+
 class TakeawayApp
   def initialize(io, menu, order)
     @io = io
@@ -54,9 +57,9 @@ class TakeawayApp
         end
       when "3"
         if @order.get_order == {}
-          puts "You haven't added anything to your order yet."
+          @io.puts "You haven't added anything to your order yet."
         else
-          puts "Your order summary:"
+          @io.puts "Your order summary:"
           @order.get_order.each do |meal, quantity|
             print "#{quantity}x #{meal.get_name} - £#{sprintf("%.2f", meal.get_price)}"
             if quantity > 1
@@ -65,11 +68,14 @@ class TakeawayApp
               print "\n"
             end
           end
-          puts "Total: £#{sprintf("%.2f", @order.get_total)}"
-          puts ""
+          @io.puts "Total: £#{sprintf("%.2f", @order.get_total)}"
+          @io.puts ""
         end
-
-      #TODO: other options
+      when "4"
+        @io.puts "Please enter your phone number to receive a confirmation SMS:"
+        phone_number = @io.gets.chomp
+        text_message = TextMessage.new("Thank you! Your order was placed and will be delivered before #{Time.now}.", phone_number)
+        text_message.send
       when "5"
         exit
       else

@@ -1,23 +1,26 @@
 class Order
   def initialize
-    order_hash = {} # to save meals and their quantities
+    @order_hash = {} 
   end
 
-  def ask_for_meal
-    # asks user for a meal and a quantity
-    # calls add with those information
-  end
-
-  def add(meal, quantity) # meal is an instance of Meal, quantity is an integer
-    # saves meal and quantity in the order_hash
+  def add(meal, quantity) 
+    if @order_hash.has_key?(meal)
+      @order_hash[meal] += quantity
+    else
+      @order_hash[meal] = quantity
+    end
   end
 
   def get_total
-    # returns total price for the order
+    total = 0.00
+    @order_hash.each do |meal, quantity|
+      total += quantity * meal.get_price
+    end
+    return total
   end
 
-  def print_receipt
-    # prints the receipt of the order so far
+  def get_order
+    @order_hash
   end
 
   def get_phone_number

@@ -23,7 +23,7 @@ class OrderPlacer
       delivery_time = (time + (60 * 30)).strftime("%H:%M") # adding 30min to the current time, then formatting it
       message = "Thank you! Your order was placed and will be delivered before #{delivery_time}."
       text_message = TextMessage.new(message, phone_number)
-      # text_message.send
+      text_message.send
       @io.puts message
     end
   end

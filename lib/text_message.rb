@@ -13,10 +13,11 @@ class TextMessage
 
     from = '+12069849174' # Your Twilio number
 
-    client.messages.create(
-    from: from,
-    to: @number,
-    body: "Test message" # put in real message here
-    )
+    puts @message
+    # client.messages.create(
+    # from: from,
+    # to: @number,
+    # body: "Test message" # put in real message here
+    # )
   end
 end

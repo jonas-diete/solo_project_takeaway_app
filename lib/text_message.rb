@@ -7,17 +7,18 @@ class TextMessage
   end
 
   def send
-    account_sid = 'AC5ea63c8deaaf26d0be69413ed864429e'
-    auth_token = '6808039b49212f9b9cc5f236947c6f98'
+    account_sid = 'xxxxxxx' # enter your Twilio account SID
+    auth_token = 'xxxxxxx' # enter your Twilio auth token
     client = Twilio::REST::Client.new(account_sid, auth_token)
 
-    from = '+12069849174' # Your Twilio number
+    from = '+xxxxxxxx' # enter your Twilio phone number
 
-    puts @message
+    # uncomment lines below to send the message:
+
     # client.messages.create(
     # from: from,
     # to: @number,
-    # body: "Test message" # put in real message here
+    # body: @message
     # )
   end
 end

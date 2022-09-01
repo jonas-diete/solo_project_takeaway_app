@@ -1,8 +1,8 @@
 require "./menu.rb" # for loading menu from file
 require "./meal.rb" # for loading menu from file
 require "./order.rb"  # for loading menu from file
-require "csv" # for loading from file
 require "./text_message.rb"
+require "csv" # for loading from file
 require "date"
 
 class TakeawayApp
@@ -11,7 +11,7 @@ class TakeawayApp
 
     @order = Order.new
     @menu = Menu.new
-    file_content = CSV.read("./menu.csv")
+    file_content = CSV.read("./lib/menu.csv")
     file_content.each do |line|
       meal = Meal.new(line[0], line[1].to_f)
       @menu.add(meal)
@@ -34,6 +34,7 @@ class TakeawayApp
   def ask_for_selection
     @io.puts "Choose your option (1-5):"
     @option = @io.gets.chomp
+    @io.puts ""
   end
 
   def print_menu
@@ -72,11 +73,11 @@ class TakeawayApp
     else
       @io.puts "Your order summary:"
       @order.get_order.each do |meal, quantity|
-        print "#{quantity}x #{meal.get_name} - £#{sprintf("%.2f", meal.get_price)}"
+        @io.print "#{quantity}x #{meal.get_name} - £#{sprintf("%.2f", meal.get_price)}"
         if quantity > 1
-          puts " each"
+          @io.puts " each"
         else
-          print "\n"
+          @io.print "\n"
         end
       end
       @io.puts "Total: £#{sprintf("%.2f", @order.get_total)}"
@@ -97,6 +98,7 @@ class TakeawayApp
       delivery_time = (Time.now + (60 * 30)).strftime("%H:%M") # adding 30min to the current time, then formatting it
       text_message = TextMessage.new("Thank you! Your order was placed and will be delivered before #{delivery_time}.", phone_number)
       text_message.send
+      @io.puts text_message
     end
   end
 
@@ -114,7 +116,7 @@ class TakeawayApp
       when "4"
         place_order
       when "5"
-        exit
+        return
       else
         @io.puts "Please enter a number from 1-5"
       end

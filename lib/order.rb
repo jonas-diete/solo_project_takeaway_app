@@ -22,14 +22,4 @@ class Order
   def get_order
     @order_hash
   end
-
-  def get_phone_number
-    # asks user for phone number
-    # => returns number (a string)
-  end
-
-  def place_order
-    # calls get_phone_number
-    # creates a new object of class text message and sends that message to user
-  end
 end
